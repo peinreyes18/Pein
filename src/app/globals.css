@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fefce8;
+  --foreground: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  min-height: 100dvh;
+}
+
+/* Safe area for bottom nav */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Large tap targets for older users */
+button, a, [role="button"] {
+  min-height: 44px;
+}
+
+/* Smooth card transitions */
+.card-enter {
+  animation: cardSlideIn 0.3s ease-out;
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Progress bar animation */
+.progress-fill {
+  transition: width 0.5s ease-out;
+}
