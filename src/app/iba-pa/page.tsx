@@ -3,17 +3,17 @@
 import Link from 'next/link';
 
 const menuItems = [
-  { href: '/pagsusulit', icon: '✅', label: 'Pagsusulit', desc: 'Subukan ang alam mo' },
-  { href: '/progreso', icon: '📊', label: 'Progreso', desc: 'Tingnan ang iyong pag-unlad' },
-  { href: '/parirala', icon: '💬', label: 'Mabilisang Parirala', desc: 'Mahahalagang parirala' },
-  { href: '/mga-numero', icon: '🔢', label: 'Mga Numero', desc: 'Matuto ng bilang 1-100' },
-  { href: '/settings', icon: '⚙️', label: 'Settings', desc: 'Baguhin ang laki ng teksto at audio' },
+  { href: '/pagsusulit', icon: '✅', label: 'Quiz', desc: 'Test your knowledge' },
+  { href: '/progreso', icon: '📊', label: 'Progress', desc: 'Track your learning' },
+  { href: '/parirala', icon: '💬', label: 'Quick Phrases', desc: 'Essential phrases' },
+  { href: '/mga-numero', icon: '🔢', label: 'Numbers', desc: 'Learn numbers 1-100' },
+  { href: '/settings', icon: '⚙️', label: 'Settings', desc: 'Text size and audio' },
 ];
 
 export default function IbaPaPage() {
   return (
     <div className="px-4 pt-6">
-      <h1 className="mb-6 text-2xl font-bold text-green-800">📋 Iba Pa</h1>
+      <h1 className="mb-6 text-2xl font-bold text-green-800">📋 More</h1>
 
       <div className="space-y-3">
         {menuItems.map(item => (
@@ -33,7 +33,7 @@ export default function IbaPaPage() {
       {/* App Info */}
       <div className="mt-8 text-center text-gray-400 text-sm">
         <p>Italiano v1.0</p>
-        <p>Matuto ng Italyano mula sa Tagalog</p>
+        <p>Learn Italian from Tagalog</p>
         <p className="mt-1">🇵🇭 → 🇮🇹</p>
       </div>
     </div>

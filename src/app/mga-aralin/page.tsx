@@ -17,9 +17,9 @@ export default function LessonsPage() {
 
   return (
     <div className="px-4 pt-6">
-      <h1 className="mb-2 text-2xl font-bold text-green-800">📖 Mga Aralin</h1>
+      <h1 className="mb-2 text-2xl font-bold text-green-800">📖 Lessons</h1>
       <p className="mb-6 text-gray-600">
-        Pumili ng aralin para magsimula. Sundan ang pagkakasunod-sunod para sa pinakamabuting resulta.
+        Choose a lesson to start. Follow the order for best results.
       </p>
 
       <div className="space-y-3">
@@ -40,11 +40,11 @@ export default function LessonsPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
-                        Aralin {lesson.order}
+                        Lesson {lesson.order}
                       </span>
                       {isCompleted && (
                         <span className="text-xs font-bold text-green-700 bg-green-200 px-2 py-0.5 rounded-full">
-                          ✓ Tapos na
+                          ✓ Done
                         </span>
                       )}
                     </div>
@@ -52,7 +52,7 @@ export default function LessonsPage() {
                       {lesson.title}
                     </p>
                     <p className="text-sm text-gray-500">
-                      {lesson.titleItalian} — {lesson.items.length} na item
+                      {lesson.titleItalian} — {lesson.items.length} items
                     </p>
                   </div>
                   <span className="text-2xl text-green-500">→</span>
@@ -67,8 +67,8 @@ export default function LessonsPage() {
           <div className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-sm border border-gray-100 transition-transform active:scale-[0.98]">
             <span className="text-4xl">🔢</span>
             <div className="flex-1">
-              <p className="font-bold text-gray-800 text-lg">Mga Numero 1–100</p>
-              <p className="text-sm text-gray-500">Matuto ng mga bilang sa Italyano</p>
+              <p className="font-bold text-gray-800 text-lg">Numbers 1–100</p>
+              <p className="text-sm text-gray-500">Learn Italian numbers</p>
             </div>
             <span className="text-2xl text-green-500">→</span>
           </div>

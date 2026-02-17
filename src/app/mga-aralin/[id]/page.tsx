@@ -28,9 +28,9 @@ export default function LessonPlayerPage({ params }: Props) {
     return (
       <div className="flex min-h-screen items-center justify-center px-4">
         <div className="text-center">
-          <p className="text-2xl">Hindi nahanap ang aralin.</p>
+          <p className="text-2xl">Lesson not found.</p>
           <Link href="/mga-aralin" className="mt-4 inline-block text-green-600 font-bold">
-            ← Bumalik sa mga aralin
+            ← Back to Lessons
           </Link>
         </div>
       </div>
@@ -68,10 +68,10 @@ export default function LessonPlayerPage({ params }: Props) {
       <div className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
         <div className="mb-6 text-6xl">🎉</div>
         <h1 className="mb-2 text-3xl font-bold text-green-800">
-          Magaling!
+          Great Job!
         </h1>
         <p className="mb-2 text-xl text-gray-700">
-          Natapos mo ang aralin:
+          You finished the lesson:
         </p>
         <p className="mb-6 text-2xl font-bold text-green-700">
           {lesson.title}
@@ -80,10 +80,10 @@ export default function LessonPlayerPage({ params }: Props) {
         {needsPractice.length > 0 && (
           <div className="mb-6 rounded-2xl bg-amber-50 border border-amber-200 p-4 w-full max-w-sm">
             <p className="font-bold text-amber-800">
-              {needsPractice.length} na item ang kailangan pang practisan
+              {needsPractice.length} items still need practice
             </p>
             <p className="text-sm text-amber-700">
-              Lalabas sila sa iyong repaso!
+              They will appear in your review!
             </p>
           </div>
         )}
@@ -99,19 +99,19 @@ export default function LessonPlayerPage({ params }: Props) {
             }}
             className="block w-full rounded-2xl bg-green-100 py-4 text-center font-bold text-green-800 text-lg transition-transform active:scale-[0.97]"
           >
-            🔄 Ulitin ang Aralin
+            🔄 Repeat Lesson
           </Link>
           <Link
             href="/repaso"
             className="block w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.97]"
           >
-            📝 Mag-repaso Ngayon
+            📝 Review Now
           </Link>
           <Link
             href="/mga-aralin"
             className="block w-full rounded-2xl bg-white border border-gray-200 py-4 text-center font-bold text-gray-700 text-lg transition-transform active:scale-[0.97]"
           >
-            ← Bumalik sa Mga Aralin
+            ← Back to Lessons
           </Link>
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function LessonPlayerPage({ params }: Props) {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <Link href="/mga-aralin" className="text-green-700 font-bold text-lg">
-          ← Bumalik
+          ← Back
         </Link>
         <span className="text-sm font-bold text-gray-500">
           {currentIndex + 1} / {items.length}
@@ -150,7 +150,7 @@ export default function LessonPlayerPage({ params }: Props) {
         {/* Italian Phrase */}
         <div className="mb-4 flex items-start gap-3">
           <div className="flex-1">
-            <p className="text-sm font-bold text-green-600 mb-1">Italyano:</p>
+            <p className="text-sm font-bold text-green-600 mb-1">Italian:</p>
             <p className="text-3xl font-bold text-gray-900">
               {currentItem.italian}
             </p>
@@ -161,7 +161,7 @@ export default function LessonPlayerPage({ params }: Props) {
         {/* Pronunciation */}
         <div className="mb-4 rounded-xl bg-blue-50 px-4 py-2">
           <p className="text-sm text-blue-600 font-medium">
-            🗣️ Bigkas: <span className="font-bold">{currentItem.pronunciation}</span>
+            🗣️ Pronunciation: <span className="font-bold">{currentItem.pronunciation}</span>
           </p>
         </div>
 
@@ -172,7 +172,7 @@ export default function LessonPlayerPage({ params }: Props) {
             className="w-full rounded-2xl border-2 border-dashed border-green-300 bg-green-50 py-6 text-center transition-transform active:scale-[0.98]"
           >
             <p className="text-lg font-bold text-green-700">
-              👆 I-tap para makita ang Tagalog
+              👆 Tap to see the Tagalog meaning
             </p>
           </button>
         ) : (
@@ -187,7 +187,7 @@ export default function LessonPlayerPage({ params }: Props) {
 
             {/* Example */}
             <div className="mb-4 rounded-xl bg-gray-50 p-4">
-              <p className="text-sm font-bold text-gray-500 mb-2">Halimbawa:</p>
+              <p className="text-sm font-bold text-gray-500 mb-2">Example:</p>
               <div className="flex items-start gap-2 mb-1">
                 <p className="text-lg font-semibold text-gray-800 flex-1">
                   &ldquo;{currentItem.exampleItalian}&rdquo;
@@ -203,7 +203,7 @@ export default function LessonPlayerPage({ params }: Props) {
             {currentItem.commonMistake && (
               <div className="mb-4 rounded-xl bg-red-50 p-4 border border-red-100">
                 <p className="text-sm font-bold text-red-700">
-                  ⚠️ Tandaan:
+                  ⚠️ Remember:
                 </p>
                 <p className="text-sm text-red-600 mt-1">
                   {currentItem.commonMistake}
@@ -217,13 +217,13 @@ export default function LessonPlayerPage({ params }: Props) {
                 onClick={handleNeedPractice}
                 className="rounded-2xl bg-amber-100 py-4 text-center font-bold text-amber-800 text-lg transition-transform active:scale-[0.95]"
               >
-                🔄 Ulitin
+                🔄 Practice Again
               </button>
               <button
                 onClick={handleGotIt}
                 className="rounded-2xl bg-green-500 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.95]"
               >
-                ✓ Alam ko na
+                ✓ Got It
               </button>
             </div>
           </div>

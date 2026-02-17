@@ -34,7 +34,7 @@ export default function RepasoPage() {
   if (!mounted) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="text-2xl">Naglo-load...</div>
+        <div className="text-2xl">Loading...</div>
       </div>
     );
   }
@@ -46,10 +46,10 @@ export default function RepasoPage() {
           <>
             <div className="mb-4 text-6xl">🎯</div>
             <h1 className="mb-2 text-3xl font-bold text-green-800">
-              Magaling!
+              Great Job!
             </h1>
             <p className="mb-4 text-xl text-gray-700">
-              {sessionCorrect} / {sessionTotal} ang tama
+              {sessionCorrect} / {sessionTotal} correct
             </p>
             <div className="mb-6 w-full max-w-xs rounded-2xl bg-green-50 p-4">
               <div className="h-4 rounded-full bg-gray-200 overflow-hidden">
@@ -59,7 +59,7 @@ export default function RepasoPage() {
                 />
               </div>
               <p className="mt-2 text-sm text-green-700 font-bold">
-                {Math.round((sessionCorrect / sessionTotal) * 100)}% tama
+                {Math.round((sessionCorrect / sessionTotal) * 100)}% correct
               </p>
             </div>
           </>
@@ -67,10 +67,10 @@ export default function RepasoPage() {
           <>
             <div className="mb-4 text-6xl">✨</div>
             <h1 className="mb-2 text-3xl font-bold text-green-800">
-              Wala nang dapat repasuhin!
+              Nothing to review!
             </h1>
             <p className="mb-6 text-lg text-gray-600">
-              Tapusin ang isang aralin para magkaroon ng mga flashcard.
+              Complete a lesson to unlock flashcards.
             </p>
           </>
         )}
@@ -80,13 +80,13 @@ export default function RepasoPage() {
             href="/mga-aralin"
             className="block w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.97]"
           >
-            📖 Pumunta sa Mga Aralin
+            📖 Go to Lessons
           </Link>
           <Link
             href="/"
             className="block w-full rounded-2xl bg-white border border-gray-200 py-4 text-center font-bold text-gray-700 text-lg transition-transform active:scale-[0.97]"
           >
-            🏠 Bumalik sa Bahay
+            🏠 Back to Home
           </Link>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function RepasoPage() {
     }
   };
 
-  const boxLabels = ['', 'Bago', 'Natutunan', 'Pamilyar', 'Magaling', 'Master'];
+  const boxLabels = ['', 'New', 'Learning', 'Familiar', 'Good', 'Mastered'];
   const boxColors = ['', 'bg-red-100 text-red-700', 'bg-orange-100 text-orange-700', 'bg-yellow-100 text-yellow-700', 'bg-blue-100 text-blue-700', 'bg-green-100 text-green-700'];
 
   return (
@@ -138,7 +138,7 @@ export default function RepasoPage() {
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <Link href="/" className="text-green-700 font-bold text-lg">
-          ← Bumalik
+          ← Back
         </Link>
         <span className="text-sm font-bold text-gray-500">
           {currentIndex + 1} / {cards.length}
@@ -154,7 +154,7 @@ export default function RepasoPage() {
       </div>
 
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-green-800">🔄 Repaso</h1>
+        <h1 className="text-xl font-bold text-green-800">🔄 Review</h1>
         <span className={`text-xs font-bold px-2 py-1 rounded-full ${boxColors[currentCard.box]}`}>
           {boxLabels[currentCard.box]}
         </span>
@@ -165,7 +165,7 @@ export default function RepasoPage() {
         {/* Italian Phrase */}
         <div className="mb-4 flex items-start gap-3">
           <div className="flex-1">
-            <p className="text-sm font-bold text-green-600 mb-1">Italyano:</p>
+            <p className="text-sm font-bold text-green-600 mb-1">Italian:</p>
             <p className="text-3xl font-bold text-gray-900">
               {currentItem.italian}
             </p>
@@ -176,7 +176,7 @@ export default function RepasoPage() {
         {/* Pronunciation */}
         <div className="mb-4 rounded-xl bg-blue-50 px-4 py-2">
           <p className="text-sm text-blue-600 font-medium">
-            🗣️ Bigkas: <span className="font-bold">{currentItem.pronunciation}</span>
+            🗣️ Pronunciation: <span className="font-bold">{currentItem.pronunciation}</span>
           </p>
         </div>
 
@@ -186,7 +186,7 @@ export default function RepasoPage() {
             className="w-full rounded-2xl border-2 border-dashed border-green-300 bg-green-50 py-6 text-center transition-transform active:scale-[0.98]"
           >
             <p className="text-lg font-bold text-green-700">
-              👆 Alam mo ba ito? I-tap para makita
+              👆 Do you know this? Tap to reveal
             </p>
           </button>
         ) : (
@@ -201,7 +201,7 @@ export default function RepasoPage() {
 
             {/* Example */}
             <div className="mb-4 rounded-xl bg-gray-50 p-4">
-              <p className="text-sm font-bold text-gray-500 mb-2">Halimbawa:</p>
+              <p className="text-sm font-bold text-gray-500 mb-2">Example:</p>
               <div className="flex items-start gap-2 mb-1">
                 <p className="text-base font-semibold text-gray-800 flex-1">
                   &ldquo;{currentItem.exampleItalian}&rdquo;
@@ -219,13 +219,13 @@ export default function RepasoPage() {
                 onClick={handleIncorrect}
                 className="rounded-2xl bg-red-100 py-4 text-center font-bold text-red-700 text-lg transition-transform active:scale-[0.95]"
               >
-                ✗ Hindi ko alam
+                ✗ Don't Know
               </button>
               <button
                 onClick={handleCorrect}
                 className="rounded-2xl bg-green-500 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.95]"
               >
-                ✓ Alam ko!
+                ✓ I Know It!
               </button>
             </div>
           </div>

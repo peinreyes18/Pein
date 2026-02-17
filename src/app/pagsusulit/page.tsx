@@ -108,14 +108,14 @@ export default function PagsusulatPage() {
   if (state === 'setup') {
     return (
       <div className="px-4 pt-6">
-        <h1 className="mb-2 text-2xl font-bold text-green-800">✅ Pagsusulit</h1>
+        <h1 className="mb-2 text-2xl font-bold text-green-800">✅ Quiz</h1>
         <p className="mb-6 text-gray-600">
-          Subukan ang iyong kaalaman! Pumili ng uri ng pagsusulit.
+          Test your knowledge! Choose a quiz type.
         </p>
 
         {/* Mode Selection */}
         <div className="mb-6">
-          <p className="mb-3 font-bold text-gray-700">Uri ng Pagsusulit:</p>
+          <p className="mb-3 font-bold text-gray-700">Quiz Type:</p>
           <div className="space-y-3">
             <button
               onClick={() => setMode('tagalog-to-italian')}
@@ -125,7 +125,7 @@ export default function PagsusulatPage() {
                   : 'bg-white text-gray-700 border border-gray-200'
               }`}
             >
-              🇵🇭 → 🇮🇹 Tagalog → Italyano
+              🇵🇭 → 🇮🇹 Tagalog → Italian
             </button>
             <button
               onClick={() => setMode('italian-to-tagalog')}
@@ -135,14 +135,14 @@ export default function PagsusulatPage() {
                   : 'bg-white text-gray-700 border border-gray-200'
               }`}
             >
-              🇮🇹 → 🇵🇭 Italyano → Tagalog
+              🇮🇹 → 🇵🇭 Italian → Tagalog
             </button>
           </div>
         </div>
 
         {/* Lesson Selection */}
         <div className="mb-6">
-          <p className="mb-3 font-bold text-gray-700">Pumili ng Aralin:</p>
+          <p className="mb-3 font-bold text-gray-700">Choose a Lesson:</p>
           <div className="space-y-2">
             <button
               onClick={() => setSelectedLesson('all')}
@@ -152,7 +152,7 @@ export default function PagsusulatPage() {
                   : 'bg-white text-gray-700 border border-gray-200'
               }`}
             >
-              📚 Lahat ng Aralin
+              📚 All Lessons
             </button>
             {lessons.map(l => (
               <button
@@ -174,7 +174,7 @@ export default function PagsusulatPage() {
           onClick={startQuiz}
           className="w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-xl transition-transform active:scale-[0.97] shadow-lg"
         >
-          ▶️ Simulan ang Pagsusulit
+          ▶️ Start Quiz
         </button>
       </div>
     );
@@ -184,14 +184,14 @@ export default function PagsusulatPage() {
   if (state === 'result') {
     const percentage = Math.round((correct / questions.length) * 100);
     const emoji = percentage >= 80 ? '🌟' : percentage >= 60 ? '👍' : '💪';
-    const message = percentage >= 80 ? 'Napakagaling!' : percentage >= 60 ? 'Magaling!' : 'Kaya mo pa! Mag-practice ulit.';
+    const message = percentage >= 80 ? 'Excellent!' : percentage >= 60 ? 'Good Job!' : 'Keep going! Practice again.';
 
     return (
       <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
         <div className="mb-4 text-6xl">{emoji}</div>
         <h1 className="mb-2 text-3xl font-bold text-green-800">{message}</h1>
         <p className="mb-4 text-xl text-gray-700">
-          {correct} / {questions.length} ang tama
+          {correct} / {questions.length} correct
         </p>
         <div className="mb-6 w-full max-w-xs">
           <div className="h-4 rounded-full bg-gray-200 overflow-hidden">
@@ -210,13 +210,13 @@ export default function PagsusulatPage() {
             }}
             className="block w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.97]"
           >
-            🔄 Subukan Ulit
+            🔄 Try Again
           </button>
           <Link
             href="/"
             className="block w-full rounded-2xl bg-white border border-gray-200 py-4 text-center font-bold text-gray-700 text-lg transition-transform active:scale-[0.97]"
           >
-            🏠 Bumalik sa Bahay
+            🏠 Back to Home
           </Link>
         </div>
       </div>
@@ -227,7 +227,7 @@ export default function PagsusulatPage() {
   const currentQ = questions[currentIndex];
   const questionText = mode === 'tagalog-to-italian' ? currentQ.tagalog : currentQ.italian;
   const correctAnswer = mode === 'tagalog-to-italian' ? currentQ.italian : currentQ.tagalog;
-  const questionLabel = mode === 'tagalog-to-italian' ? 'Ano ito sa Italyano?' : 'Ano ito sa Tagalog?';
+  const questionLabel = mode === 'tagalog-to-italian' ? 'What is this in Italian?' : 'What is this in Tagalog?';
   const questionFlag = mode === 'tagalog-to-italian' ? '🇵🇭' : '🇮🇹';
 
   return (
@@ -238,7 +238,7 @@ export default function PagsusulatPage() {
           onClick={() => setState('setup')}
           className="text-green-700 font-bold text-lg"
         >
-          ← Bumalik
+          ← Back
         </button>
         <span className="text-sm font-bold text-gray-500">
           {currentIndex + 1} / {questions.length}
@@ -299,18 +299,18 @@ export default function PagsusulatPage() {
         <div className="mt-6 card-enter">
           {selected === correctAnswer ? (
             <p className="mb-3 text-center text-lg font-bold text-green-700">
-              ✅ Tama!
+              ✅ Correct!
             </p>
           ) : (
             <p className="mb-3 text-center text-lg font-bold text-red-700">
-              ❌ Ang tamang sagot: <span className="text-green-700">{correctAnswer}</span>
+              ❌ Correct answer: <span className="text-green-700">{correctAnswer}</span>
             </p>
           )}
           <button
             onClick={handleNext}
             className="w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-lg transition-transform active:scale-[0.97]"
           >
-            {currentIndex < questions.length - 1 ? 'Susunod →' : 'Tingnan ang Resulta'}
+            {currentIndex < questions.length - 1 ? 'Next →' : 'See Results'}
           </button>
         </div>
       )}

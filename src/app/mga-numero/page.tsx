@@ -40,22 +40,22 @@ export default function MgaNumeroPage() {
       return (
         <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
           <div className="mb-4 text-6xl">🔢</div>
-          <h1 className="mb-2 text-3xl font-bold text-green-800">Magaling!</h1>
+          <h1 className="mb-2 text-3xl font-bold text-green-800">Great Job!</h1>
           <p className="mb-6 text-xl text-gray-700">
-            {score} / {total} ang tama
+            {score} / {total} correct
           </p>
           <div className="w-full max-w-sm space-y-3">
             <button
               onClick={startPractice}
               className="block w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-lg"
             >
-              🔄 Subukan Ulit
+              🔄 Try Again
             </button>
             <button
               onClick={() => setMode('list')}
               className="block w-full rounded-2xl bg-white border border-gray-200 py-4 text-center font-bold text-gray-700 text-lg"
             >
-              📋 Tingnan ang Listahan
+              📋 View List
             </button>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function MgaNumeroPage() {
             onClick={() => setMode('list')}
             className="text-green-700 font-bold text-lg"
           >
-            ← Bumalik
+            ← Back
           </button>
           <span className="text-sm font-bold text-gray-500">
             {currentIndex + 1} / {practiceItems.length}
@@ -86,7 +86,7 @@ export default function MgaNumeroPage() {
         </div>
 
         <div className="card-enter rounded-3xl bg-white p-8 shadow-lg border border-gray-100 text-center">
-          <p className="text-sm font-bold text-gray-500 mb-2">Anong numero ito sa Italyano?</p>
+          <p className="text-sm font-bold text-gray-500 mb-2">What is this number in Italian?</p>
           <p className="text-6xl font-bold text-green-700 mb-4">{item.number}</p>
           <p className="text-lg text-gray-500 mb-6">({item.tagalog})</p>
 
@@ -96,7 +96,7 @@ export default function MgaNumeroPage() {
               className="w-full rounded-2xl border-2 border-dashed border-green-300 bg-green-50 py-6 text-center"
             >
               <p className="text-lg font-bold text-green-700">
-                👆 I-tap para makita ang sagot
+                👆 Tap to see the answer
               </p>
             </button>
           ) : (
@@ -120,7 +120,7 @@ export default function MgaNumeroPage() {
                   }}
                   className="rounded-2xl bg-amber-100 py-4 font-bold text-amber-800 text-lg"
                 >
-                  🔄 Hindi ko alam
+                  🔄 Don't Know
                 </button>
                 <button
                   onClick={() => {
@@ -135,7 +135,7 @@ export default function MgaNumeroPage() {
                   }}
                   className="rounded-2xl bg-green-500 py-4 font-bold text-white text-lg"
                 >
-                  ✓ Alam ko!
+                  ✓ I Know It!
                 </button>
               </div>
             </div>
@@ -148,16 +148,16 @@ export default function MgaNumeroPage() {
   // List mode
   return (
     <div className="px-4 pt-6">
-      <h1 className="mb-2 text-2xl font-bold text-green-800">🔢 Mga Numero 1–100</h1>
+      <h1 className="mb-2 text-2xl font-bold text-green-800">🔢 Numbers 1–100</h1>
       <p className="mb-4 text-gray-600">
-        Matuto ng mga bilang sa Italyano.
+        Learn Italian numbers.
       </p>
 
       <button
         onClick={startPractice}
         className="mb-6 w-full rounded-2xl bg-green-600 py-4 text-center font-bold text-white text-xl shadow-lg transition-transform active:scale-[0.97]"
       >
-        ▶️ Mag-practice ng Numero
+        ▶️ Practice Numbers
       </button>
 
       <div className="space-y-2">

@@ -23,7 +23,7 @@ export default function Home() {
   if (!mounted) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="text-2xl">🇮🇹 Naglo-load...</div>
+        <div className="text-2xl">🇮🇹 Loading...</div>
       </div>
     );
   }
@@ -36,7 +36,7 @@ export default function Home() {
           🇮🇹 Italiano
         </h1>
         <p className="mt-1 text-gray-600">
-          Matuto ng Italyano mula sa Tagalog
+          Learn Italian from Tagalog
         </p>
       </div>
 
@@ -44,11 +44,11 @@ export default function Home() {
       <div className="mb-6 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 p-5 text-white shadow-lg">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium opacity-90">Sunod-sunod na Araw</p>
+            <p className="text-sm font-medium opacity-90">Day Streak</p>
             <p className="text-4xl font-bold">{streak} 🔥</p>
           </div>
           <div className="text-right">
-            <p className="text-sm opacity-90">Natapos na Aralin</p>
+            <p className="text-sm opacity-90">Lessons Done</p>
             <p className="text-2xl font-bold">{completedCount} / {lessons.length}</p>
           </div>
         </div>
@@ -62,10 +62,10 @@ export default function Home() {
               <span className="text-3xl">🔔</span>
               <div>
                 <p className="font-bold text-amber-800">
-                  May {dueCount} na dapat repasuhin!
+                  You have {dueCount} cards to review!
                 </p>
                 <p className="text-sm text-amber-700">
-                  I-tap para simulan ang repaso
+                  Tap to start your review
                 </p>
               </div>
             </div>
@@ -78,15 +78,15 @@ export default function Home() {
         <Link href="/mga-aralin">
           <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
             <span className="text-4xl">📖</span>
-            <p className="mt-2 font-bold text-gray-800">Mga Aralin</p>
-            <p className="text-sm text-gray-500">Matuto ng bago</p>
+            <p className="mt-2 font-bold text-gray-800">Lessons</p>
+            <p className="text-sm text-gray-500">Learn something new</p>
           </div>
         </Link>
 
         <Link href="/repaso">
           <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
             <span className="text-4xl">🔄</span>
-            <p className="mt-2 font-bold text-gray-800">Repaso</p>
+            <p className="mt-2 font-bold text-gray-800">Review</p>
             <p className="text-sm text-gray-500">Flashcards</p>
           </div>
         </Link>
@@ -94,16 +94,16 @@ export default function Home() {
         <Link href="/pagsusulit">
           <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
             <span className="text-4xl">✅</span>
-            <p className="mt-2 font-bold text-gray-800">Pagsusulit</p>
-            <p className="text-sm text-gray-500">Subukan ang alam mo</p>
+            <p className="mt-2 font-bold text-gray-800">Quiz</p>
+            <p className="text-sm text-gray-500">Test your knowledge</p>
           </div>
         </Link>
 
         <Link href="/parirala">
           <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
             <span className="text-4xl">💬</span>
-            <p className="mt-2 font-bold text-gray-800">Parirala</p>
-            <p className="text-sm text-gray-500">Mabilisang sanggunian</p>
+            <p className="mt-2 font-bold text-gray-800">Phrases</p>
+            <p className="text-sm text-gray-500">Quick reference</p>
           </div>
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function Home() {
       {completedCount < lessons.length && (
         <div className="mb-6">
           <h2 className="mb-3 text-xl font-bold text-gray-800">
-            Ituloy ang Pag-aaral
+            Continue Learning
           </h2>
           {lessons
             .filter(l => !getProgress().lessonsCompleted.includes(l.id))
@@ -124,7 +124,7 @@ export default function Home() {
                   <div className="flex-1">
                     <p className="font-bold text-gray-800">{lesson.title}</p>
                     <p className="text-sm text-gray-500">
-                      {lesson.items.length} na salita at parirala
+                      {lesson.items.length} words and phrases
                     </p>
                   </div>
                   <span className="text-2xl text-green-500">→</span>
@@ -137,7 +137,7 @@ export default function Home() {
       {/* Motivational */}
       <div className="mb-8 rounded-2xl bg-green-50 p-4 text-center border border-green-100">
         <p className="text-lg text-green-800">
-          💪 Kaya mo ito! Unti-unti lang.
+          💪 You can do it! One step at a time.
         </p>
       </div>
     </div>

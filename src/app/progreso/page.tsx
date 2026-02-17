@@ -21,7 +21,7 @@ export default function ProgresoPage() {
   if (!progress) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="text-2xl">Naglo-load...</div>
+        <div className="text-2xl">Loading...</div>
       </div>
     );
   }
@@ -37,7 +37,7 @@ export default function ProgresoPage() {
 
   return (
     <div className="px-4 pt-6">
-      <h1 className="mb-6 text-2xl font-bold text-green-800">📊 Progreso</h1>
+      <h1 className="mb-6 text-2xl font-bold text-green-800">📊 Progress</h1>
 
       {/* Streak */}
       <div className="mb-4 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 p-5 text-white shadow-lg">
@@ -45,12 +45,12 @@ export default function ProgresoPage() {
           <div>
             <p className="text-sm opacity-90">Streak</p>
             <p className="text-4xl font-bold">{progress.odayStreak} 🔥</p>
-            <p className="text-xs opacity-75">sunod-sunod na araw</p>
+            <p className="text-xs opacity-75">consecutive days</p>
           </div>
           <div>
-            <p className="text-sm opacity-90">Natapos na Aralin</p>
+            <p className="text-sm opacity-90">Lessons Done</p>
             <p className="text-4xl font-bold">{progress.lessonsCompleted.length}</p>
-            <p className="text-xs opacity-75">sa {lessons.length} na aralin</p>
+            <p className="text-xs opacity-75">of {lessons.length} lessons</p>
           </div>
         </div>
       </div>
@@ -59,25 +59,25 @@ export default function ProgresoPage() {
       <div className="mb-4 grid grid-cols-2 gap-3">
         <div className="rounded-2xl bg-white p-4 shadow-sm border border-gray-100 text-center">
           <p className="text-3xl font-bold text-blue-600">{totalCards}</p>
-          <p className="text-sm text-gray-600">Kabuuang Flashcard</p>
+          <p className="text-sm text-gray-600">Total Flashcards</p>
         </div>
         <div className="rounded-2xl bg-white p-4 shadow-sm border border-gray-100 text-center">
           <p className="text-3xl font-bold text-green-600">{mastered}</p>
-          <p className="text-sm text-gray-600">Na-master na</p>
+          <p className="text-sm text-gray-600">Mastered</p>
         </div>
         <div className="rounded-2xl bg-white p-4 shadow-sm border border-gray-100 text-center">
           <p className="text-3xl font-bold text-purple-600">{progress.totalReviews}</p>
-          <p className="text-sm text-gray-600">Kabuuang Repaso</p>
+          <p className="text-sm text-gray-600">Total Reviews</p>
         </div>
         <div className="rounded-2xl bg-white p-4 shadow-sm border border-gray-100 text-center">
           <p className="text-3xl font-bold text-amber-600">{accuracy}%</p>
-          <p className="text-sm text-gray-600">Katumpakan</p>
+          <p className="text-sm text-gray-600">Accuracy</p>
         </div>
       </div>
 
       {/* Lesson Progress */}
       <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm border border-gray-100">
-        <h2 className="mb-3 font-bold text-gray-800">Mga Aralin</h2>
+        <h2 className="mb-3 font-bold text-gray-800">Lessons</h2>
         <div className="space-y-2">
           {lessons.map(lesson => {
             const isCompleted = progress.lessonsCompleted.includes(lesson.id);
@@ -88,7 +88,7 @@ export default function ProgresoPage() {
                   {lesson.title}
                 </span>
                 {isCompleted ? (
-                  <span className="text-sm font-bold text-green-600">✓ Tapos</span>
+                  <span className="text-sm font-bold text-green-600">✓ Done</span>
                 ) : (
                   <span className="text-sm text-gray-400">—</span>
                 )}
@@ -100,7 +100,7 @@ export default function ProgresoPage() {
 
       {/* Mastery Progress Bar */}
       <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm border border-gray-100">
-        <h2 className="mb-2 font-bold text-gray-800">Pag-unlad sa Pag-master</h2>
+        <h2 className="mb-2 font-bold text-gray-800">Mastery Progress</h2>
         <div className="h-4 rounded-full bg-gray-200 overflow-hidden">
           <div
             className="h-full rounded-full bg-gradient-to-r from-green-400 to-green-600 progress-fill"
@@ -108,14 +108,14 @@ export default function ProgresoPage() {
           />
         </div>
         <p className="mt-2 text-sm text-gray-600">
-          {mastered} na-master sa {totalCards} na item
+          {mastered} mastered out of {totalCards} items
         </p>
       </div>
 
       {/* Recent Quiz Results */}
       {recentQuizzes.length > 0 && (
         <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm border border-gray-100">
-          <h2 className="mb-3 font-bold text-gray-800">Mga Huling Pagsusulit</h2>
+          <h2 className="mb-3 font-bold text-gray-800">Recent Quizzes</h2>
           <div className="space-y-2">
             {recentQuizzes.map(q => (
               <div key={q.id} className="flex items-center justify-between text-sm">
@@ -142,10 +142,10 @@ export default function ProgresoPage() {
       <div className="mb-6 rounded-2xl bg-green-50 p-4 text-center border border-green-100">
         <p className="text-lg text-green-800">
           {progress.odayStreak >= 7
-            ? '🏆 Isang linggo na! Ang galing mo!'
+            ? '🏆 One week streak! Amazing!'
             : progress.odayStreak >= 3
-            ? '🌟 Patuloy lang! Ang ganda ng progreso mo!'
-            : '💪 Simulan ang iyong streak ngayon!'}
+            ? '🌟 Keep it up! Great progress!'
+            : '💪 Start your streak today!'}
         </p>
       </div>
     </div>

@@ -15,9 +15,9 @@ export default function PariralaPage() {
 
   return (
     <div className="px-4 pt-6">
-      <h1 className="mb-2 text-2xl font-bold text-green-800">💬 Mabilisang Parirala</h1>
+      <h1 className="mb-2 text-2xl font-bold text-green-800">💬 Quick Phrases</h1>
       <p className="mb-4 text-gray-600">
-        Mga pinaka-importanteng parirala para sa araw-araw.
+        Essential phrases for everyday use.
       </p>
 
       {/* Search */}
@@ -26,7 +26,7 @@ export default function PariralaPage() {
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder="🔍 Maghanap ng parirala..."
+          placeholder="🔍 Search phrases..."
           className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3 text-lg focus:border-green-400 focus:outline-none"
         />
       </div>
@@ -58,8 +58,8 @@ export default function PariralaPage() {
 
       {filtered.length === 0 && (
         <div className="mt-8 text-center text-gray-500">
-          <p className="text-xl">Walang nahanap na parirala.</p>
-          <p className="text-sm mt-1">Subukan ang ibang salita.</p>
+          <p className="text-xl">No phrases found.</p>
+          <p className="text-sm mt-1">Try a different word.</p>
         </div>
       )}
     </div>

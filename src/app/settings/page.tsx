@@ -25,7 +25,7 @@ export default function SettingsPage() {
   if (!settings) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="text-2xl">Naglo-load...</div>
+        <div className="text-2xl">Loading...</div>
       </div>
     );
   }
@@ -34,7 +34,7 @@ export default function SettingsPage() {
     <div className="px-4 pt-6">
       <div className="mb-6 flex items-center gap-3">
         <Link href="/iba-pa" className="text-green-700 font-bold text-lg">
-          ← Bumalik
+          ← Back
         </Link>
       </div>
 
@@ -42,13 +42,13 @@ export default function SettingsPage() {
 
       {/* Text Size */}
       <div className="mb-6 rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
-        <h2 className="mb-3 font-bold text-gray-800 text-lg">📏 Laki ng Teksto</h2>
-        <p className="mb-3 text-sm text-gray-500">Piliin ang laki ng teksto na komportable para sa iyo.</p>
+        <h2 className="mb-3 font-bold text-gray-800 text-lg">📏 Text Size</h2>
+        <p className="mb-3 text-sm text-gray-500">Choose a text size that is comfortable for you.</p>
         <div className="space-y-2">
           {[
             { value: 'normal' as const, label: 'Normal', preview: 'Ciao!' },
-            { value: 'malaki' as const, label: 'Malaki', preview: 'Ciao!' },
-            { value: 'mas-malaki' as const, label: 'Mas Malaki', preview: 'Ciao!' },
+            { value: 'malaki' as const, label: 'Large', preview: 'Ciao!' },
+            { value: 'mas-malaki' as const, label: 'Extra Large', preview: 'Ciao!' },
           ].map(option => (
             <button
               key={option.value}
@@ -76,8 +76,8 @@ export default function SettingsPage() {
         <h2 className="mb-3 font-bold text-gray-800 text-lg">🔊 Audio</h2>
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-bold text-gray-700">Buksan ang Audio</p>
-            <p className="text-sm text-gray-500">Marinig ang tamang bigkas ng Italyano</p>
+            <p className="font-bold text-gray-700">Enable Audio</p>
+            <p className="text-sm text-gray-500">Hear correct Italian pronunciation</p>
           </div>
           <button
             onClick={() => updateSetting('audioEnabled', !settings.audioEnabled)}
@@ -98,7 +98,7 @@ export default function SettingsPage() {
             onClick={() => speakItalian('Ciao! Come stai?')}
             className="mt-3 w-full rounded-xl bg-green-50 py-3 text-center font-bold text-green-700 transition-transform active:scale-[0.98]"
           >
-            🔈 Subukan ang Audio
+            🔈 Test Audio
           </button>
         )}
       </div>
@@ -106,7 +106,7 @@ export default function SettingsPage() {
       {/* Daily Goal */}
       <div className="mb-6 rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
         <h2 className="mb-3 font-bold text-gray-800 text-lg">🎯 Daily Goal</h2>
-        <p className="mb-3 text-sm text-gray-500">Ilang item ang gusto mong aralin bawat araw?</p>
+        <p className="mb-3 text-sm text-gray-500">How many items do you want to learn per day?</p>
         <div className="flex gap-2">
           {[5, 10, 15, 20].map(goal => (
             <button
@@ -126,11 +126,11 @@ export default function SettingsPage() {
 
       {/* Reset */}
       <div className="mb-6 rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
-        <h2 className="mb-3 font-bold text-gray-800 text-lg">🗑️ I-reset ang Data</h2>
-        <p className="mb-3 text-sm text-gray-500">Tanggalin lahat ng progreso at magsimula ulit.</p>
+        <h2 className="mb-3 font-bold text-gray-800 text-lg">🗑️ Reset Data</h2>
+        <p className="mb-3 text-sm text-gray-500">Remove all progress and start over.</p>
         <button
           onClick={() => {
-            if (confirm('Sigurado ka bang gusto mong i-reset lahat ng data? Hindi na ito pwedeng ibalik.')) {
+            if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
               localStorage.removeItem('italiano_progress');
               localStorage.removeItem('italiano_settings');
               window.location.href = '/';
@@ -138,7 +138,7 @@ export default function SettingsPage() {
           }}
           className="w-full rounded-xl bg-red-50 py-3 text-center font-bold text-red-600 border border-red-200 transition-transform active:scale-[0.98]"
         >
-          I-reset Lahat
+          Reset All
         </button>
       </div>
     </div>
