@@ -6,7 +6,7 @@ import { getSettings } from '@/lib/storage';
 
 interface AudioButtonProps {
   text: string;
-  size?: 'normal' | 'large';
+  size?: 'small' | 'normal' | 'large';
 }
 
 export default function AudioButton({ text, size = 'normal' }: AudioButtonProps) {
@@ -25,22 +25,22 @@ export default function AudioButton({ text, size = 'normal' }: AudioButtonProps)
 
     setPlaying(true);
     speakItalian(text);
-    // Reset after estimated duration
     setTimeout(() => setPlaying(false), Math.max(1500, text.length * 100));
   };
 
-  const sizeClasses = size === 'large'
-    ? 'w-16 h-16 text-3xl'
-    : 'w-12 h-12 text-2xl';
+  const sizeClasses =
+    size === 'large' ? 'w-10 h-10 text-lg' :
+    size === 'small' ? 'w-6 h-6 text-xs' :
+    'w-8 h-8 text-base';
 
   return (
     <button
       onClick={handlePlay}
-      className={`${sizeClasses} flex items-center justify-center rounded-full bg-green-100 text-green-700 transition-all active:scale-95 hover:bg-green-200 ${
-        playing ? 'animate-pulse ring-2 ring-green-400' : ''
+      className={`${sizeClasses} flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-all active:scale-95 hover:bg-blue-50 hover:text-blue-600 ${
+        playing ? 'animate-pulse ring-2 ring-blue-300' : ''
       }`}
-      aria-label={`Pakinggan: ${text}`}
-      title="Pakinggan (Listen)"
+      aria-label={`Listen: ${text}`}
+      title="Listen"
     >
       {playing ? '🔊' : '🔈'}
     </button>

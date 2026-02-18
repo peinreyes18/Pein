@@ -10,7 +10,6 @@ export default function VocabCategoryPage() {
   const params = useParams();
   const categoryId = params.category as string;
   const [search, setSearch] = useState('');
-  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const category = vocabCategories.find(c => c.id === categoryId);
 
@@ -66,40 +65,48 @@ export default function VocabCategoryPage() {
         />
       </div>
 
-      <div className="space-y-2">
-        {filtered.map(word => {
-          const isExpanded = expandedId === word.id;
-          return (
-            <div key={word.id} className="rounded-xl border border-slate-100 bg-white overflow-hidden">
-              <button
-                className="w-full text-left px-4 py-3.5 flex items-center gap-3"
-                onClick={() => setExpandedId(isExpanded ? null : word.id)}
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="text-base font-bold text-slate-900">{word.italian}</p>
-                  <p className="text-sm text-slate-500 mt-0.5">{word.english}</p>
-                  <p className="text-xs text-blue-500 mt-0.5">{word.pronunciation}</p>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <AudioButton text={word.italian} />
-                  <span className={`text-slate-300 text-xs transition-transform ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
-                </div>
-              </button>
+      <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+        {/* Table header */}
+        <div className="grid grid-cols-[1fr_1fr_1fr] border-b border-slate-100 bg-slate-50 px-4 py-2.5">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Italian</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">English</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Example</p>
+        </div>
 
-              {isExpanded && word.exampleItalian && (
-                <div className="px-4 pb-4 border-t border-slate-50 bg-slate-50">
-                  <div className="pt-3 flex items-start gap-2">
-                    <div className="flex-1">
-                      <p className="text-sm text-slate-700 italic">&ldquo;{word.exampleItalian}&rdquo;</p>
-                      <p className="text-xs text-slate-500 mt-1">{word.exampleEnglish}</p>
-                    </div>
-                    <AudioButton text={word.exampleItalian} size="normal" />
+        {/* Table rows */}
+        {filtered.map((word, index) => (
+          <div
+            key={word.id}
+            className={`grid grid-cols-[1fr_1fr_1fr] px-4 py-3 gap-3 ${index !== filtered.length - 1 ? 'border-b border-slate-100' : ''}`}
+          >
+            {/* Italian column */}
+            <div className="flex items-start gap-2 min-w-0">
+              <AudioButton text={word.italian} size="small" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-slate-900 leading-snug">{word.italian}</p>
+                <p className="text-xs text-blue-500 mt-0.5">{word.pronunciation}</p>
+              </div>
+            </div>
+
+            {/* English column */}
+            <div className="flex items-start min-w-0">
+              <p className="text-sm text-slate-600 leading-snug">{word.english}</p>
+            </div>
+
+            {/* Example column */}
+            <div className="flex items-start gap-2 min-w-0">
+              {word.exampleItalian && (
+                <>
+                  <AudioButton text={word.exampleItalian} size="small" />
+                  <div className="min-w-0">
+                    <p className="text-xs text-slate-700 italic leading-snug">{word.exampleItalian}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{word.exampleEnglish}</p>
                   </div>
-                </div>
+                </>
               )}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       {filtered.length === 0 && (
