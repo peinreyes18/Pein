@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { quickPhrases } from '@/data/phrasebook';
 import AudioButton from '@/components/AudioButton';
 
@@ -14,41 +13,31 @@ export default function PariralaPage() {
   );
 
   return (
-    <div className="px-4 pt-6">
-      <h1 className="mb-2 text-2xl font-bold text-green-800">💬 Quick Phrases</h1>
-      <p className="mb-4 text-gray-600">
-        Essential phrases for everyday use.
-      </p>
+    <div className="px-5 pt-8">
+      <div className="mb-6">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Reference</p>
+        <h1 className="text-2xl font-bold text-slate-900">Quick Phrases</h1>
+        <p className="text-sm text-slate-500 mt-1">Essential phrases for everyday use.</p>
+      </div>
 
-      {/* Search */}
-      <div className="mb-4">
+      <div className="mb-5">
         <input
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder="🔍 Search phrases..."
-          className="w-full rounded-2xl border-2 border-gray-200 bg-white px-4 py-3 text-lg focus:border-green-400 focus:outline-none"
+          placeholder="Search phrases..."
+          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-blue-400 focus:outline-none"
         />
       </div>
 
-      {/* Phrases List */}
-      <div className="space-y-3">
+      <div className="space-y-2">
         {filtered.map(phrase => (
-          <div
-            key={phrase.id}
-            className="rounded-2xl bg-white p-4 shadow-sm border border-gray-100"
-          >
+          <div key={phrase.id} className="rounded-xl border border-slate-100 bg-white p-4">
             <div className="flex items-start gap-3">
               <div className="flex-1">
-                <p className="text-xl font-bold text-gray-900">
-                  {phrase.italian}
-                </p>
-                <p className="text-base text-gray-600 mt-1">
-                  {phrase.tagalog}
-                </p>
-                <p className="text-sm text-blue-600 mt-1">
-                  🗣️ {phrase.pronunciation}
-                </p>
+                <p className="text-base font-bold text-slate-900">{phrase.italian}</p>
+                <p className="text-sm text-slate-500 mt-0.5">{phrase.tagalog}</p>
+                <p className="text-xs text-blue-500 mt-1">{phrase.pronunciation}</p>
               </div>
               <AudioButton text={phrase.italian} />
             </div>
@@ -57,10 +46,7 @@ export default function PariralaPage() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="mt-8 text-center text-gray-500">
-          <p className="text-xl">No phrases found.</p>
-          <p className="text-sm mt-1">Try a different word.</p>
-        </div>
+        <p className="mt-8 text-center text-sm text-slate-400">No phrases found.</p>
       )}
     </div>
   );

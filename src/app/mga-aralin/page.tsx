@@ -11,69 +11,61 @@ export default function LessonsPage() {
 
   useEffect(() => {
     setMounted(true);
-    const progress = getProgress();
-    setCompleted(progress.lessonsCompleted);
+    setCompleted(getProgress().lessonsCompleted);
   }, []);
 
+  const sorted = [...lessons].sort((a, b) => a.order - b.order);
+  const pct = mounted ? Math.round((completed.length / lessons.length) * 100) : 0;
+
   return (
-    <div className="px-4 pt-6">
-      <h1 className="mb-2 text-2xl font-bold text-green-800">📖 Lessons</h1>
-      <p className="mb-6 text-gray-600">
-        Choose a lesson to start. Follow the order for best results.
-      </p>
+    <div className="px-5 pt-8">
+      <div className="mb-6">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Study</p>
+        <h1 className="text-2xl font-bold text-slate-900">Lessons</h1>
+        <p className="text-sm text-slate-500 mt-1">{mounted ? completed.length : 0} of {lessons.length} completed</p>
+      </div>
 
-      <div className="space-y-3">
-        {lessons
-          .sort((a, b) => a.order - b.order)
-          .map((lesson) => {
-            const isCompleted = mounted && completed.includes(lesson.id);
-            return (
-              <Link key={lesson.id} href={`/mga-aralin/${lesson.id}`}>
-                <div
-                  className={`flex items-center gap-4 rounded-2xl p-5 shadow-sm transition-transform active:scale-[0.98] border ${
-                    isCompleted
-                      ? 'bg-green-50 border-green-200'
-                      : 'bg-white border-gray-100'
-                  }`}
-                >
-                  <span className="text-4xl">{lesson.icon}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
-                        Lesson {lesson.order}
-                      </span>
-                      {isCompleted && (
-                        <span className="text-xs font-bold text-green-700 bg-green-200 px-2 py-0.5 rounded-full">
-                          ✓ Done
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-1 font-bold text-gray-800 text-lg">
-                      {lesson.title}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {lesson.titleItalian} — {lesson.items.length} items
-                    </p>
+      <div className="mb-6 h-1.5 rounded-full bg-slate-100 overflow-hidden">
+        <div className="h-full rounded-full bg-blue-600 progress-fill" style={{ width: `${pct}%` }} />
+      </div>
+
+      <div className="space-y-2 mb-6">
+        {sorted.map((lesson) => {
+          const isDone = mounted && completed.includes(lesson.id);
+          return (
+            <Link key={lesson.id} href={`/mga-aralin/${lesson.id}`}>
+              <div className={`flex items-center gap-4 rounded-xl border px-4 py-3.5 transition-colors ${
+                isDone ? 'border-blue-100 bg-blue-50' : 'border-slate-100 bg-white hover:bg-slate-50'
+              }`}>
+                <span className="text-lg w-7 text-center flex-shrink-0">{lesson.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-slate-400">Lesson {lesson.order}</span>
+                    {isDone && <span className="text-xs font-semibold text-blue-600">Completed</span>}
                   </div>
-                  <span className="text-2xl text-green-500">→</span>
+                  <p className="text-sm font-semibold text-slate-800 truncate">{lesson.titleItalian}</p>
+                  <p className="text-xs text-slate-400 truncate">{lesson.title} — {lesson.items.length} items</p>
                 </div>
-              </Link>
-            );
-          })}
+                <span className={`text-sm flex-shrink-0 ${isDone ? 'text-blue-400' : 'text-slate-300'}`}>
+                  {isDone ? '✓' : '→'}
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
-      <div className="mt-6 mb-4">
-        <Link href="/mga-numero">
-          <div className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-sm border border-gray-100 transition-transform active:scale-[0.98]">
-            <span className="text-4xl">🔢</span>
-            <div className="flex-1">
-              <p className="font-bold text-gray-800 text-lg">Numbers 1–100</p>
-              <p className="text-sm text-gray-500">Learn Italian numbers</p>
-            </div>
-            <span className="text-2xl text-green-500">→</span>
+      <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Bonus</p>
+      <Link href="/mga-numero">
+        <div className="flex items-center gap-4 rounded-xl border border-slate-100 bg-white px-4 py-3.5 transition-colors hover:bg-slate-50 mb-4">
+          <span className="text-lg w-7 text-center flex-shrink-0">🔢</span>
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-slate-800">Numbers 1–100</p>
+            <p className="text-xs text-slate-400">Learn Italian numbers</p>
           </div>
-        </Link>
-      </div>
+          <span className="text-slate-300 text-sm">→</span>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -23,123 +23,112 @@ export default function Home() {
   if (!mounted) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="text-2xl">🇮🇹 Loading...</div>
+        <div className="text-slate-400 text-sm">Loading...</div>
       </div>
     );
   }
 
+  const progressPct = Math.round((completedCount / lessons.length) * 100);
+
   return (
-    <div className="px-4 pt-6">
+    <div className="px-5 pt-8">
       {/* Header */}
-      <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold text-green-800">
-          🇮🇹 Italiano
-        </h1>
-        <p className="mt-1 text-gray-600">
-          Learn Italian from Tagalog
-        </p>
+      <div className="mb-8">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Italian Learning</p>
+        <h1 className="text-2xl font-bold text-slate-900">Welcome back</h1>
       </div>
 
-      {/* Streak Card */}
-      <div className="mb-6 rounded-2xl bg-gradient-to-r from-green-500 to-green-600 p-5 text-white shadow-lg">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium opacity-90">Day Streak</p>
-            <p className="text-4xl font-bold">{streak} 🔥</p>
-          </div>
-          <div className="text-right">
-            <p className="text-sm opacity-90">Lessons Done</p>
-            <p className="text-2xl font-bold">{completedCount} / {lessons.length}</p>
-          </div>
+      {/* Stats row */}
+      <div className="grid grid-cols-3 gap-3 mb-8">
+        <div className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+          <p className="text-2xl font-bold text-slate-900">{streak}</p>
+          <p className="text-xs text-slate-500 mt-0.5">Day streak</p>
+        </div>
+        <div className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+          <p className="text-2xl font-bold text-slate-900">{completedCount}</p>
+          <p className="text-xs text-slate-500 mt-0.5">Lessons done</p>
+        </div>
+        <div className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+          <p className="text-2xl font-bold text-slate-900">{dueCount}</p>
+          <p className="text-xs text-slate-500 mt-0.5">Cards due</p>
         </div>
       </div>
 
-      {/* Daily Review Alert */}
+      {/* Overall progress */}
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-sm font-semibold text-slate-700">Overall progress</p>
+          <p className="text-sm text-slate-500">{completedCount} / {lessons.length} lessons</p>
+        </div>
+        <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-blue-600 progress-fill"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+      </div>
+
+      {/* Review alert */}
       {dueCount > 0 && (
         <Link href="/repaso">
-          <div className="mb-4 rounded-2xl border-2 border-amber-300 bg-amber-50 p-4 transition-transform active:scale-[0.98]">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">🔔</span>
-              <div>
-                <p className="font-bold text-amber-800">
-                  You have {dueCount} cards to review!
-                </p>
-                <p className="text-sm text-amber-700">
-                  Tap to start your review
-                </p>
-              </div>
+          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 flex items-center justify-between">
+            <div>
+              <p className="font-semibold text-amber-900 text-sm">
+                {dueCount} flashcard{dueCount !== 1 ? 's' : ''} ready to review
+              </p>
+              <p className="text-xs text-amber-700 mt-0.5">Keep your streak going</p>
             </div>
+            <span className="text-amber-500 text-sm font-semibold">Review →</span>
           </div>
         </Link>
       )}
 
-      {/* Quick Actions */}
-      <div className="mb-6 grid grid-cols-2 gap-3">
-        <Link href="/mga-aralin">
-          <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
-            <span className="text-4xl">📖</span>
-            <p className="mt-2 font-bold text-gray-800">Lessons</p>
-            <p className="text-sm text-gray-500">Learn something new</p>
-          </div>
-        </Link>
-
-        <Link href="/repaso">
-          <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
-            <span className="text-4xl">🔄</span>
-            <p className="mt-2 font-bold text-gray-800">Review</p>
-            <p className="text-sm text-gray-500">Flashcards</p>
-          </div>
-        </Link>
-
-        <Link href="/pagsusulit">
-          <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
-            <span className="text-4xl">✅</span>
-            <p className="mt-2 font-bold text-gray-800">Quiz</p>
-            <p className="text-sm text-gray-500">Test your knowledge</p>
-          </div>
-        </Link>
-
-        <Link href="/parirala">
-          <div className="rounded-2xl bg-white p-5 text-center shadow-md transition-transform active:scale-[0.97] border border-gray-100">
-            <span className="text-4xl">💬</span>
-            <p className="mt-2 font-bold text-gray-800">Phrases</p>
-            <p className="text-sm text-gray-500">Quick reference</p>
-          </div>
-        </Link>
+      {/* Quick actions */}
+      <div className="mb-8">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Quick actions</p>
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { href: '/mga-aralin', label: 'Lessons', sub: 'Learn something new' },
+            { href: '/repaso', label: 'Flashcards', sub: 'Spaced repetition review' },
+            { href: '/pagsusulit', label: 'Quiz', sub: 'Test your knowledge' },
+            { href: '/vocabulary', label: 'Vocabulary', sub: 'Browse by category' },
+          ].map(item => (
+            <Link key={item.href} href={item.href}>
+              <div className="rounded-xl border border-slate-100 bg-white p-4 transition-colors hover:bg-slate-50 active:bg-slate-100">
+                <p className="font-semibold text-slate-800 text-sm">{item.label}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{item.sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* Continue Learning */}
+      {/* Continue learning */}
       {completedCount < lessons.length && (
-        <div className="mb-6">
-          <h2 className="mb-3 text-xl font-bold text-gray-800">
-            Continue Learning
-          </h2>
-          {lessons
-            .filter(l => !getProgress().lessonsCompleted.includes(l.id))
-            .slice(0, 2)
-            .map(lesson => (
-              <Link key={lesson.id} href={`/mga-aralin/${lesson.id}`}>
-                <div className="mb-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm border border-gray-100 transition-transform active:scale-[0.98]">
-                  <span className="text-3xl">{lesson.icon}</span>
-                  <div className="flex-1">
-                    <p className="font-bold text-gray-800">{lesson.title}</p>
-                    <p className="text-sm text-gray-500">
-                      {lesson.items.length} words and phrases
-                    </p>
+        <div className="mb-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Continue learning</p>
+          <div className="space-y-2">
+            {lessons
+              .sort((a, b) => a.order - b.order)
+              .filter(l => !getProgress().lessonsCompleted.includes(l.id))
+              .slice(0, 3)
+              .map(lesson => (
+                <Link key={lesson.id} href={`/mga-aralin/${lesson.id}`}>
+                  <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-white px-4 py-3 transition-colors hover:bg-slate-50">
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg">{lesson.icon}</span>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800">{lesson.titleItalian}</p>
+                        <p className="text-xs text-slate-400">{lesson.items.length} items</p>
+                      </div>
+                    </div>
+                    <span className="text-slate-300 text-sm">→</span>
                   </div>
-                  <span className="text-2xl text-green-500">→</span>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+          </div>
         </div>
       )}
-
-      {/* Motivational */}
-      <div className="mb-8 rounded-2xl bg-green-50 p-4 text-center border border-green-100">
-        <p className="text-lg text-green-800">
-          💪 You can do it! One step at a time.
-        </p>
-      </div>
     </div>
   );
 }
