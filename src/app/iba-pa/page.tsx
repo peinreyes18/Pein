@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 const menuItems = [
+  { href: '/vocabulary', icon: '📚', label: 'Vocabulary', desc: 'Browse words by category' },
   { href: '/pagsusulit', icon: '✅', label: 'Quiz', desc: 'Test your knowledge' },
   { href: '/progreso', icon: '📊', label: 'Progress', desc: 'Track your learning' },
   { href: '/parirala', icon: '💬', label: 'Quick Phrases', desc: 'Essential phrases' },
