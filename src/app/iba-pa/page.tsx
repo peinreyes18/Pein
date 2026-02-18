@@ -5,6 +5,7 @@ import Link from 'next/link';
 const menuItems = [
   { href: '/vocabulary', label: 'Vocabulary', desc: 'Browse words by category' },
   { href: '/pagsusulit', label: 'Quiz', desc: 'Test your knowledge' },
+  { href: '/pakikinig', label: 'Listening', desc: 'Hear it, pick the meaning' },
   { href: '/progreso', label: 'Progress', desc: 'Track your learning' },
   { href: '/parirala', label: 'Quick Phrases', desc: 'Essential phrases' },
   { href: '/mga-numero', label: 'Numbers', desc: 'Learn numbers 1–100' },
