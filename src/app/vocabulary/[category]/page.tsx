@@ -100,7 +100,6 @@ export default function VocabCategoryPage() {
                   <AudioButton text={word.exampleItalian} size="small" />
                   <div className="min-w-0">
                     <p className="text-xs text-slate-700 italic leading-snug">{word.exampleItalian}</p>
-                    <p className="text-xs text-slate-400 mt-0.5">{word.exampleEnglish}</p>
                   </div>
                 </>
               )}
