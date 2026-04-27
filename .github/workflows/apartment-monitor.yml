@@ -1,0 +1,53 @@
+name: Holland2stay Apartment Monitor
+
+# Runs every 5 minutes (GitHub's minimum) and sends phone notifications
+# when new apartments matching your criteria appear.
+#
+# Required secrets (Settings → Secrets and variables → Actions):
+#   NTFY_TOPIC          — your ntfy topic name, e.g. pein-apartments-2024
+#   or:
+#   TELEGRAM_TOKEN      — bot token from @BotFather
+#   TELEGRAM_CHAT_ID    — your chat ID
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # every 5 minutes
+  workflow_dispatch:         # also allows manual run from GitHub UI
+
+permissions:
+  contents: write            # needed to save seen-listings.json back to repo
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          # Use the default GITHUB_TOKEN so the workflow can commit back
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore seen listings cache
+        uses: actions/cache@v4
+        with:
+          path: data/seen-listings.json
+          # Unique key per run so we always save; restore-keys picks the latest
+          key: seen-listings-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            seen-listings-
+
+      - name: Run apartment check
+        env:
+          NTFY_TOPIC:       ${{ secrets.NTFY_TOPIC }}
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CITIES:           'utrecht,amsterdam,nieuwegein,zeist,hilversum'
+          MAX_PRICE:        '1300'
+          ONE_SHOT:         '1'
+        run: node scripts/monitor.mjs
