@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/mga-aralin', label: 'Lessons' },
-  { href: '/vocabulary', label: 'Vocabulary' },
+  { href: '/vocabulary', label: 'Vocab' },
   { href: '/repaso', label: 'Review' },
-  { href: '/iba-pa', label: 'More' },
+  { href: '/apartments', label: 'Alerts' },
 ];
 
 export default function BottomNav() {
